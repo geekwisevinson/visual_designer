@@ -1,0 +1,77 @@
+<style>
+    *{
+        margin:0px;
+        padding:0px;
+        box-sizing: border-box;
+        /*border: 1px solid black;*/
+
+
+
+    }
+
+    body,html {
+        width: 100%;
+        height: 100%;
+    }
+    ul{
+        padding:0;
+        margin:0;
+        list-style: none;
+    }
+    .tabs{
+        display: inline-block;
+        float:left;
+    }
+    .tabs li{
+        border:1px solid black;
+        background-color: yellow;
+    }
+</style>
+
+
+   <ul>
+       <li ng-repeat="player in main.players" style="
+
+
+       position:absolute;
+       left:{{player.x +'%'}} ;
+       top:{{player.y + '%'}};
+       z-index: {{player.z_index}};"
+               >
+
+
+           <img   ng-src="{{player.pic}}" style="
+               width:{{player.width+'%'}};
+           ">
+
+       </li>
+   </ul>
+       <div style="position: absolute; z-index: 10;">
+           <ul  class="tabs" >
+               <li   ng-repeat="player in main.players" ng-click="main.select_tab(this.$index);">{{player.name}}</li>
+            </ul>
+           <button ng-click="main.plus_one()">+</button>
+       </div>
+
+
+       <div style="position: relative;z-index: 10; top:0px; left:100px; display: inline-block;">
+           <input type="text" placeholder="name"/>
+           <input type="text" placeholder="x"/>
+           <input type="text" placeholder="y"/>
+           <input type="text" placeholder="width"/>
+           <input type="text" placeholder="z_index"/>
+           <input type="text" placeholder="src"/>
+
+          <div  ng-repeat="player in main.players" ng-show="main.is_selected(this.$index)" style="z-index: 100;">
+              <input type="text" ng-model="main.players[this.$index].name"/>
+              <input  type="text" ng-model="main.players[this.$index].x"/>
+              <input  type="text" ng-model="main.players[this.$index].y "/>
+              <input  type="text" ng-model="main.players[this.$index].width"/>
+              <input  type="text" ng-model="main.players[this.$index].z_index"/>
+              <input  type="text" ng-model="main.players[this.$index].pic"/>
+
+          </div>
+
+       </div>
+
+
